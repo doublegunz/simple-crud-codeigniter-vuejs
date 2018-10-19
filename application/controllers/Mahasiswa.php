@@ -16,4 +16,11 @@ class Mahasiswa extends CI_Controller {
         $this->load->view('mahasiswa/index');
     }
 
+    public function get()
+    {
+        $mahasiswa = $this->model_mahasiswa->getAll();
+        
+        echo json_encode($mahasiswa);
+    }
+
 }

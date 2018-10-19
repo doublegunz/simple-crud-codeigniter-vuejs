@@ -18,35 +18,52 @@
     <!-- lihat mahasiswa -->
     <template id="lihat-mahasiswa">
         <section>
-            <router-link :to="{name: 'tambah-mahasiswa'}" class="btn btn-primary">
-                    Add New
-            </router-link>
+            <div class="row">
+                <div class="col-md-12" style="margin-bottom:10px;">
+                    <router-link :to="{name: 'tambah-mahasiswa'}" class="btn btn-primary">
+                        Add New
+                    </router-link>
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>NIM</th>
-                        <th>Nama</th>
-                        <th>Alamat</th>
-                        <th><span class="sr-only">Aksi</span></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="row in $parent.mahasiswa">
-                        <td>{{ row.nim }}</td>
-                        <td>{{ row.nama }}</td>
-                        <td>{{ row.alamat }}</td>
-                        <td>
-                            <router-link :to="{name: 'ubah-mahasiswa', params:{id: row.id}}" class="btn btn-xs btn-success">Ubah</router-link>
+                </div>
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>NIM</th>
+                                <th>Nama</th>
+                                <th>Alamat</th>
+                                <th><span class="sr-only">Aksi</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="row in $parent.mahasiswa">
+                                <td>{{ row.nim }}</td>
+                                <td>{{ row.nama }}</td>
+                                <td>{{ row.alamat }}</td>
+                                <td>
+                                    <router-link :to="{name: 'ubah-mahasiswa', params:{id: row.id}}" class="btn btn-xs btn-success">Ubah</router-link>
 
-                            <button type="button" @click="$parent.hapusUser(row.id)" class="btn btn-xs btn-danger">Hapus</button>
-                        </td>
+                                    <button type="button" @click="$parent.hapusUser(row.id)" class="btn btn-xs btn-danger">Hapus</button>
+                                </td>
 
-                    </tr>
-                </tbody>
-            </table>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+
+            
+
+            
         </section>
     </template> <!-- /template : lihat mahasiswa -->
 
+
+    <script src="https://unpkg.com/vue/dist/vue.js" type="text/javascript"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js" type="text/javascript"></script>
+    <script src="https://unpkg.com/axios/dist/axios.js" type="text/javascript"></script>
+    <script src="<?php echo base_url(); ?>src/main.js"></script>
 </body>
 </html>
