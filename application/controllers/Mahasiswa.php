@@ -42,4 +42,11 @@ class Mahasiswa extends CI_Controller {
         response(['message' => 'Data mahasiswa berhasil diperbaharui'], 200);
     }
 
+    public function delete($id)
+    {
+        $this->model_mahasiswa->delete($id);
+
+        response(['message' => 'Data mahasiswa berhasil dihapus.'], 200);
+    }
+
 }

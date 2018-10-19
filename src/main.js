@@ -88,6 +88,20 @@ const app = new Vue({
                     this.$router.push({ name: 'lihat-mahasiswa' })
                 })
         },
+
+        //hapus data
+        hapusMahasiswa(id)
+        {
+            if(confirm('Yakin ingin menghapus data mahasiswa ini?')) {
+                axios.delete('delete/' + id)
+                    .then(response => {
+                        this.message = response.data.message
+
+                        //refresh
+                        this.$router.go({ name: 'lihat-mahasiswa' })
+                    })
+            }
+        }
     }, //end methods
 
     created() {

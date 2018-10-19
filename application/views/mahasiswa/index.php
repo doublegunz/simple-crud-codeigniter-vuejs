@@ -43,7 +43,7 @@
                                 <td>
                                     <router-link :to="{name: 'ubah-mahasiswa', params:{id: row.id}}" class="btn btn-xs btn-success">Ubah</router-link>
 
-                                    <button type="button" @click="$parent.hapusUser(row.id)" class="btn btn-xs btn-danger">Hapus</button>
+                                    <button type="button" @click="$parent.hapusMahasiswa(row.id)" class="btn btn-xs btn-danger">Hapus</button>
                                 </td>
 
                             </tr>
