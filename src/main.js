@@ -20,6 +20,16 @@ const TambahMahasiswa = {
     template: '#tambah-mahasiswa',
 }
 
+// - Route: UbahMahasiswa
+const UbahMahasiswa = {
+    template: '#ubah-mahasiswa',
+    beforeRouteEnter(to, from, next) {
+        next( vm => {
+            vm.$parent.ambilMahasiswa(to.params.id)
+        })
+    },
+}
+
 //mulai vue app
 const app = new Vue({
     el: '#app',
@@ -35,6 +45,7 @@ const app = new Vue({
         routes: [
             { path: '/', component: LihatMahasiswa, name: 'lihat-mahasiswa'},
             { path: '/tambah', component: TambahMahasiswa, name: 'tambah-mahasiswa'},
+            { path: '/:id/ubah', component: UbahMahasiswa, name: 'ubah-mahasiswa'},
         ]
     }),
 
@@ -48,6 +59,13 @@ const app = new Vue({
             })
         },
 
+        //ambil data mahasiswa berdasarkan id
+        ambilMahasiswa(id) {
+            for(var i=0; i < this.mahasiswa.length; i++) {
+                if(this.mahasiswa[i].id == id) this.row = this.mahasiswa[i]
+            }
+        },
+
         //tambah mahasiswa ke API server
         tambahMahasiswa() {
             axios.post('/save', this.row)
@@ -58,7 +76,18 @@ const app = new Vue({
                     //redirect
                     this.$router.push({ name: 'lihat-mahasiswa' })
                 })
-        }
+        },
+
+        //ubah data mahasiswa
+        ubahMahasiswa(id) {
+            axios.patch('update/' + id, this.row)
+                .then(response => {
+                    this.message = response.data.message
+
+                    //redirect
+                    this.$router.push({ name: 'lihat-mahasiswa' })
+                })
+        },
     }, //end methods
 
     created() {

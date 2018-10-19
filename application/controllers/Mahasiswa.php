@@ -30,7 +30,16 @@ class Mahasiswa extends CI_Controller {
 
         $this->model_mahasiswa->save($input);
 
-        response(['message' => 'Data user berhasil ditambahkan'], 201);
+        response(['message' => 'Data mahasiswa berhasil ditambahkan'], 201);
+    }
+
+    public function update($id)
+    {
+        $input = parse_input(['nim', 'nama', 'alamat']);
+
+        $this->model_mahasiswa->update($input, $id);
+
+        response(['message' => 'Data mahasiswa berhasil diperbaharui'], 200);
     }
 
 }

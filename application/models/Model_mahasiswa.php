@@ -13,6 +13,12 @@ class Model_mahasiswa extends CI_Model {
         $this->db->insert('mahasiswa', $data);
     }
 
+    public function update($data, $id)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('mahasiswa', $data);
+    }
+
     public function insert_multiple($data) 
     {
         $this->db->insert_batch('mahasiswa', $data);
