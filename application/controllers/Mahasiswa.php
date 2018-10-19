@@ -13,8 +13,7 @@ class Mahasiswa extends CI_Controller {
 
     public function index()
     {
-        $data = ['mahasiswa' => $this->model_mahasiswa->getAll()];
-        $this->load->view('mahasiswa/index', $data);
+        $this->load->view('mahasiswa/index');
     }
 
 }
