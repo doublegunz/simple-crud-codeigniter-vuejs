@@ -8,6 +8,11 @@ class Model_mahasiswa extends CI_Model {
         return $query->result_array();
     }
 
+    public function save($data)
+    {
+        $this->db->insert('mahasiswa', $data);
+    }
+
     public function insert_multiple($data) 
     {
         $this->db->insert_batch('mahasiswa', $data);

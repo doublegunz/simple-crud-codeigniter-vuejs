@@ -60,6 +60,32 @@
         </section>
     </template> <!-- /template : lihat mahasiswa -->
 
+    <template id="tambah-mahasiswa">
+        <section>
+            <h4>Tambah Mahasiswa</h4>
+
+            <form @submit="$parent.tambahMahasiswa" method="POST">
+                <div class="form-group">
+                    <label for="tambah-nim">NIM</label>
+                    <input type="text" class="form-control" id="tambah-nim" v-model="$parent.row.nim" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tambah-nama">Nama</label>
+                    <input type="text" class="form-control" id="tambah-nama" v-model="$parent.row.nama" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tambah-alamat">alamat</label>
+                    <textarea name="tambah-alamat" class="form-control" id="tambah-alamat" cols="30" rows="3" v-model="$parent.row.alamat"></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Save</button>
+                <router-link :to="{ name: 'lihat-mahasiswa' }" class="btn btn-default">Batalkan</router-link>
+            </form>
+        </section>
+    </template> <!-- /template : tambah-mahasiswa -->
+
 
     <script src="https://unpkg.com/vue/dist/vue.js" type="text/javascript"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js" type="text/javascript"></script>

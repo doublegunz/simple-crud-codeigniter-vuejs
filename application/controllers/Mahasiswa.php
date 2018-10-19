@@ -9,6 +9,7 @@ class Mahasiswa extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('model_mahasiswa');
+        $this->load->helper('api_helper');
     }
 
     public function index()
@@ -18,9 +19,18 @@ class Mahasiswa extends CI_Controller {
 
     public function get()
     {
-        $mahasiswa = $this->model_mahasiswa->getAll();
+        $data = $this->model_mahasiswa->getAll();
         
-        echo json_encode($mahasiswa);
+        response($data);
+    }
+
+    public function save()
+    {
+        $input = parse_input(['nim', 'nama', 'alamat']);
+
+        $this->model_mahasiswa->save($input);
+
+        response(['message' => 'Data user berhasil ditambahkan'], 201);
     }
 
 }

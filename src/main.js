@@ -15,6 +15,11 @@ const LihatMahasiswa = {
     },
 }
 
+// - Route: TambahMahasiswa
+const TambahMahasiswa = {
+    template: '#tambah-mahasiswa',
+}
+
 //mulai vue app
 const app = new Vue({
     el: '#app',
@@ -28,7 +33,8 @@ const app = new Vue({
     router: new VueRouter({
         //routes yang dipakai 
         routes: [
-            {path: '/', component: LihatMahasiswa, name: 'lihat-mahasiswa'},
+            { path: '/', component: LihatMahasiswa, name: 'lihat-mahasiswa'},
+            { path: '/tambah', component: TambahMahasiswa, name: 'tambah-mahasiswa'},
         ]
     }),
 
@@ -40,6 +46,18 @@ const app = new Vue({
                 .then(response => {
                     this.mahasiswa = response.data
             })
+        },
+
+        //tambah mahasiswa ke API server
+        tambahMahasiswa() {
+            axios.post('/save', this.row)
+                .then(response => {
+                    //set pesan sesuai respon dari API server
+                    this.message = response.data.message
+
+                    //redirect
+                    this.$router.push({ name: 'lihat-mahasiswa' })
+                })
         }
     }, //end methods
 
